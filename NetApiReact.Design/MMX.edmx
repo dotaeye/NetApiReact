@@ -1,0 +1,94 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl" Namespace="MMX.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2005">
+        <EntityContainer Name="MMXTargetContainer" >
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="MMX" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
+        <EntityContainer Name="MMXContainer" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="UserActivitiesSet" EntityType="MMX.UserActivities" />
+          <AssociationSet Name="UserActivitiesUser" Association="MMX.UserActivitiesUser">
+            <End Role="UserActivities" EntitySet="UserActivitiesSet" />
+            <End Role="User" EntitySet="UserSet" />
+          </AssociationSet>
+          <EntitySet Name="UserSet" EntityType="MMX.User" />
+        </EntityContainer>
+        <EntityType Name="User">
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="UserActivities" Relationship="MMX.UserActivitiesUser" FromRole="User" ToRole="UserActivities" />
+          <Property Name="UserName" Type="String" Nullable="false" MaxLength="50" />
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="50" />
+          <Property Name="Phone" Type="String" Nullable="false" />
+          <Property Name="Status" Type="MMX.UserStatus" Nullable="false" />
+          <Property Name="Email" Type="String" Nullable="false" />
+          <Property Name="Avatar" Type="String" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UserActivities">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Time" Type="DateTime" Nullable="false" />
+          <NavigationProperty Name="User" Relationship="MMX.UserActivitiesUser" FromRole="UserActivities" ToRole="User" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="Type" Type="MMX.UserActivityType" Nullable="false" />
+        </EntityType>
+        <EnumType Name="UserActivityType">
+          <Member Name="Login" Value="1" />
+          <Member Name="Suggest" Value="2" />
+          <Member Name="Report" Value="3" />
+        </EnumType>
+        <Association Name="UserActivitiesUser">
+          <End Type="MMX.UserActivities" Role="UserActivities" Multiplicity="*" />
+          <End Type="MMX.User" Role="User" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+            </Principal>
+            <Dependent Role="UserActivities">
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EnumType Name="UserStatus">
+          <Member Name="Banned" Value="1" />
+          <Member Name="NotActived" Value="2" />
+          <Member Name="Actived" Value="3" />
+          <Member Name="Deleted" Value="0" />
+        </EnumType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs" Space="C-S">
+        <Alias Key="Model" Value="MMX" />
+        <Alias Key="Target" Value="MMX.Store" />
+        <EntityContainerMapping CdmEntityContainer="MMXContainer" StorageEntityContainer="MMXTargetContainer">
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <edmx:Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </edmx:Connection>
+    <edmx:Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="无" />
+      </DesignerInfoPropertySet>
+    </edmx:Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,0 +1,107 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{412C9632-A8F1-4052-BEC4-0BF3800D8F92}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>NetApiReact.Data</RootNamespace>
+    <AssemblyName>NetApiReact.Data</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="EfStartUpTask.cs" />
+    <Compile Include="Impl\UserActivitiesService.cs" />
+    <Compile Include="Impl\UserService.cs" />
+    <Compile Include="Mapping\UserActivitiesMap.cs" />
+    <Compile Include="Mapping\UserMap.cs" />
+    <Compile Include="Migrations\201512170951343_AddEmailFieldForUserModel.cs" />
+    <Compile Include="Migrations\201512170951343_AddEmailFieldForUserModel.Designer.cs">
+      <DependentUpon>201512170951343_AddEmailFieldForUserModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201512170954359_AddAvatarForUserModel.cs" />
+    <Compile Include="Migrations\201512170954359_AddAvatarForUserModel.Designer.cs">
+      <DependentUpon>201512170954359_AddAvatarForUserModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201512170959460_ModifyAvatrToAvatar.cs" />
+    <Compile Include="Migrations\201512170959460_ModifyAvatrToAvatar.Designer.cs">
+      <DependentUpon>201512170959460_ModifyAvatrToAvatar.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\User.cs" />
+    <Compile Include="Models\UserActivities.cs" />
+    <Compile Include="Models\UserActivityType.cs" />
+    <Compile Include="Models\UserStatus.cs" />
+    <Compile Include="NetApiReactContext.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\IUserActivitiesService.cs" />
+    <Compile Include="Services\IUserServices.cs" />
+    <Compile Include="SqlServerDataProvider.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201512170951343_AddEmailFieldForUserModel.resx">
+      <DependentUpon>201512170951343_AddEmailFieldForUserModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201512170954359_AddAvatarForUserModel.resx">
+      <DependentUpon>201512170954359_AddAvatarForUserModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201512170959460_ModifyAvatrToAvatar.resx">
+      <DependentUpon>201512170959460_ModifyAvatrToAvatar.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\SQ.Core\SQ.Core\SQ.Core.csproj">
+      <Project>{f65b55f6-3aac-4a20-a38d-b5b6a3d1a321}</Project>
+      <Name>SQ.Core</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
